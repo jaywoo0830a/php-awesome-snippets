@@ -15,7 +15,7 @@
         "snippets",
         "productivity",
         "coding",
-        "php7",
+        "php8",
         "psr"
     ],
     "icon": "img/php-awesome-icon.png",
@@ -28,13 +28,13 @@
     },
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/h4kst3r/php-awesome-snippets/issues"
+        "url": "https://github.com/jaywoo0830a/php-awesome-snippets/issues"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/h4kst3r/php-awesome-snippets"
+        "url": "https://github.com/jaywoo0830a/php-awesome-snippets"
     },
-    "homepage": "https://github.com/h4kst3r/php-awesome-snippets",
+    "homepage": "https://github.com/jaywoo0830a/php-awesome-snippets",
     "contributes": {
         "snippets": [
             {
