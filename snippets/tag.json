@@ -1,30 +1,46 @@
 {
-    "PHP tags": {
-        "prefix": "php",
-        "body": [
-            "<?php $0?>"
-        ],
-        "description": "PHP open tag"
-    },
-    "PHP open tag": {
-        "prefix": "po",
-        "body": [
-            "<?php"
-        ],
-        "description": "PHP open tag"
-    },
-    "PHP close tag": {
-        "prefix": "pc",
-        "body": [
-            "?>"
-        ],
-        "description": "PHP close tag"
-    },
-    "PHP echo short tag": {
-        "prefix": "peco",
-        "body": [
-            "<?= \\$${1:variable} ?>"
-        ],
-        "description": "PHP echo short tag"
-    }
+  "PHP open tag": {
+    "prefix": "po",
+    "body": [
+      "<?php"
+    ],
+    "description": "Standard PHP open tag (preferred start of every file)"
+  },
+  "PHP strict types header": {
+    "prefix": "pstr",
+    "body": [
+      "<?php",
+      "declare(strict_types=1);",
+      "",
+      "$0"
+    ],
+    "description": "PHP open tag + strict_types declaration"
+  },
+  "PHP echo short tag": {
+    "prefix": "peco",
+    "body": [
+      "<?= $${1:variable} ?>"
+    ],
+    "description": "PHP short echo tag (safe, always enabled since PHP 5.4)"
+  },
+  "PHP heredoc block": {
+    "prefix": "pher",
+    "body": [
+      "<?php",
+      "$${1:text} = <<<${2:TXT}",
+      "${3:multi-line content with $var interpolation}",
+      "${2:TXT};"
+    ],
+    "description": "PHP heredoc string block"
+  },
+  "PHP nowdoc block": {
+    "prefix": "pnow",
+    "body": [
+      "<?php",
+      "$${1:text} = <<<'${2:TXT}'",
+      "${3:multi-line raw content}",
+      "${2:TXT};"
+    ],
+    "description": "PHP nowdoc string block (no interpolation)"
+  }
 }

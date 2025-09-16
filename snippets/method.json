@@ -1,180 +1,315 @@
 {
-    "Class constructor": {
-        "prefix": "pubc",
-        "body": [
-            "public function __construct(${1:Type} \\$${2:args})",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Class public constructor block"
-    },
-    "Class private constructor": {
-        "prefix": "pric",
-        "body": [
-            "private function __construct(${1:Type} \\$${2:args})",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Class private constructor block"
-    },
-    "Class protected constructor": {
-        "prefix": "proc",
-        "body": [
-            "protected function __construct(${1:Type} \\$${2:args})",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Class protected constructor block"
-    },
-    "Private method": {
-        "prefix": "prif",
-        "body": [
-            "private function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Private method block"
-    },
-    "Private static method": {
-        "prefix": "prisf",
-        "body": [
-            "private static function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Private static method block"
-    },
-    "Final private method": {
-        "prefix": "fprif",
-        "body": [
-            "final private function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Final private method block"
-    },
-    "Final private static method": {
-        "prefix": "fprisf",
-        "body": [
-            "final private static function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Final private static method block"
-    },
-    "Protected method": {
-        "prefix": "prof",
-        "body": [
-            "protected function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Protected method block"
-    },
-    "Protected static method": {
-        "prefix": "prosf",
-        "body": [
-            "protected static function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Protected static method block"
-    },
-    "Final protected method": {
-        "prefix": "fprof",
-        "body": [
-            "final protected function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Final protected method block"
-    },
-    "Final protected static method": {
-        "prefix": "fprosf",
-        "body": [
-            "final protected static function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Final protected static method block"
-    },
-    "Abstract protected method": {
-        "prefix": "aprof",
-        "body": [
-            "abstract protected function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void};"
-        ],
-        "description": "Abstract protected method statement"
-    },
-    "Abstract protected static method": {
-        "prefix": "aprosf",
-        "body": [
-            "abstract protected static function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void};"
-        ],
-        "description": "Abstract protected static method statement"
-    },
-    "Public method": {
-        "prefix": "pubf",
-        "body": [
-            "public function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Public method block"
-    },
-    "Public static method": {
-        "prefix": "pubsf",
-        "body": [
-            "public static function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Public static method block"
-    },
-    "Final public method": {
-        "prefix": "fpubf",
-        "body": [
-            "final public function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Final public method block"
-    },
-    "Final public static method": {
-        "prefix": "fpubsf",
-        "body": [
-            "final public static function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Final public static method block"
-    },
-    "Abstract public method": {
-        "prefix": "apubf",
-        "body": [
-            "abstract public function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void};"
-        ],
-        "description": "Abstract public method statement"
-    },
-    "Abstract public static method": {
-        "prefix": "apubsf",
-        "body": [
-            "abstract public static function ${1:methodName}(${2:Type} \\$${3:args}): ${4:void};"
-        ],
-        "description": "Abstract public static method statement"
-    }
+  "Class constructor": {
+    "prefix": "pubc",
+    "body": [
+      "public function __construct(${1:Type} \\$${2:arg})",
+      "{",
+      "\t${0:// init...}",
+      "}"
+    ],
+    "description": "Public constructor"
+  },
+  "Class private constructor": {
+    "prefix": "pric",
+    "body": [
+      "private function __construct(${1:Type} \\$${2:arg})",
+      "{",
+      "\t${0:// for static factories}",
+      "}"
+    ],
+    "description": "Private constructor (factory pattern)"
+  },
+  "Class protected constructor": {
+    "prefix": "proc",
+    "body": [
+      "protected function __construct(${1:Type} \\$${2:arg})",
+      "{",
+      "\t${0:// for inheritance}",
+      "}"
+    ],
+    "description": "Protected constructor"
+  },
+
+  "Public method": {
+    "prefix": "pubf",
+    "body": [
+      "public function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Public method with typed param/return"
+  },
+  "Public static method": {
+    "prefix": "pubsf",
+    "body": [
+      "public static function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void}",
+      "{",
+      "\t${0:// static code...}",
+      "}"
+    ],
+    "description": "Public static method"
+  },
+  "Final public method": {
+    "prefix": "fpubf",
+    "body": [
+      "final public function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Final public method (PSR-12 order: final before visibility)"
+  },
+  "Final public static method": {
+    "prefix": "fpubsf",
+    "body": [
+      "final public static function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Final public static method"
+  },
+  "Abstract public method": {
+    "prefix": "apubf",
+    "body": [
+      "abstract public function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void};"
+    ],
+    "description": "Abstract public method"
+  },
+  "Abstract public static method": {
+    "prefix": "apubsf",
+    "body": [
+      "abstract public static function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void};"
+    ],
+    "description": "Abstract public static method"
+  },
+
+  "Private method": {
+    "prefix": "prif",
+    "body": [
+      "private function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Private method"
+  },
+  "Private static method": {
+    "prefix": "prisf",
+    "body": [
+      "private static function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Private static method"
+  },
+  "Final private method": {
+    "prefix": "fprif",
+    "body": [
+      "final private function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Final private method"
+  },
+  "Final private static method": {
+    "prefix": "fprisf",
+    "body": [
+      "final private static function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Final private static method"
+  },
+
+  "Protected method": {
+    "prefix": "prof",
+    "body": [
+      "protected function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Protected method"
+  },
+  "Protected static method": {
+    "prefix": "prosf",
+    "body": [
+      "protected static function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Protected static method"
+  },
+  "Final protected method": {
+    "prefix": "fprof",
+    "body": [
+      "final protected function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Final protected method"
+  },
+  "Final protected static method": {
+    "prefix": "fprosf",
+    "body": [
+      "final protected static function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Final protected static method"
+  },
+  "Abstract protected method": {
+    "prefix": "aprof",
+    "body": [
+      "abstract protected function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void};"
+    ],
+    "description": "Abstract protected method"
+  },
+  "Abstract protected static method": {
+    "prefix": "aprosf",
+    "body": [
+      "abstract protected static function ${1:methodName}(${2:Type} \\$${3:arg}): ${4:void};"
+    ],
+    "description": "Abstract protected static method"
+  },
+
+  "Method (union param types, PHP 8.0+)": {
+    "prefix": "m.union",
+    "body": [
+      "public function ${1:setValue}(int|string|array \\$${2:value}): void",
+      "{",
+      "\t${0:// handle union types...}",
+      "}"
+    ],
+    "description": "Union-typed parameter"
+  },
+  "Method (nullable param & return)": {
+    "prefix": "m.nullable",
+    "body": [
+      "public function ${1:maybeFind}(?string \\$${2:id}): ?${3:Item}",
+      "{",
+      "\t${0:// return null when not found}",
+      "}"
+    ],
+    "description": "Nullable parameter and return"
+  },
+  "Method (intersection param types, PHP 8.1+)": {
+    "prefix": "m.intersection",
+    "body": [
+      "public function ${1:consume}(\\Traversable&\\Countable \\$${2:collection}): int",
+      "{",
+      "\treturn count(iterator_to_array(\\$${2:collection}));",
+      "}"
+    ],
+    "description": "Intersection types for param"
+  },
+  "Method (never return type, PHP 8.1+)": {
+    "prefix": "m.never",
+    "body": [
+      "public function ${1:panic}(string \\$${2:message}): never",
+      "{",
+      "\tthrow new ${3:RuntimeException}(\\$${2:message});",
+      "}"
+    ],
+    "description": "Method that never returns"
+  },
+  "Method (static return type, fluent API)": {
+    "prefix": "m.staticret",
+    "body": [
+      "public function ${1:with}(string \\$${2:key}, mixed \\$${3:value}): static",
+      "{",
+      "\t$this->\\$${2:key} = \\$${3:value};",
+      "\treturn $this;",
+      "}"
+    ],
+    "description": "Fluent API with static return"
+  },
+  "Method (self return)": {
+    "prefix": "m.selfret",
+    "body": [
+      "public function ${1:reset}(): self",
+      "{",
+      "\t${0:// re-init and return $this}",
+      "\treturn $this;",
+      "}"
+    ],
+    "description": "Return self"
+  },
+  "Method (parent return)": {
+    "prefix": "m.parentret",
+    "body": [
+      "public function ${1:factory}(): parent",
+      "{",
+      "\t${0:// return parent instance}",
+      "}"
+    ],
+    "description": "Return parent (rare; for covariant returns)"
+  },
+
+  "Method with attribute (PHP 8.0+)": {
+    "prefix": "m.attr",
+    "body": [
+      "#[${1:Route}('${2:GET}', '${3:/ping}')]",
+      "public function ${4:ping}(): array",
+      "{",
+      "\treturn ['status' => 'ok'];",
+      "}"
+    ],
+    "description": "Method decorated with attribute"
+  },
+  "Method (throw expression, PHP 8.0+)": {
+    "prefix": "m.throwexpr",
+    "body": [
+      "public function ${1:requireId}(array \\$${2:data}): int",
+      "{",
+      "\t\\$id = \\$${2:data}['${3:id}'] ?? throw new ${4:InvalidArgumentException}('Missing ${3:id}');",
+      "\treturn (int) \\$id;",
+      "}"
+    ],
+    "description": "Use throw as an expression inside method"
+  },
+  "Magic __invoke": {
+    "prefix": "m.invoke",
+    "body": [
+      "public function __invoke(${1:Type} \\$${2:arg}): ${3:mixed}",
+      "{",
+      "\t${0:// callable object entrypoint}",
+      "}"
+    ],
+    "description": "Magic method __invoke"
+  },
+  "Magic __toString": {
+    "prefix": "m.tostr",
+    "body": [
+      "public function __toString(): string",
+      "{",
+      "\t${0:// return string representation}",
+      "}"
+    ],
+    "description": "Magic method __toString"
+  },
+  "Magic __get / __set": {
+    "prefix": "m.getset",
+    "body": [
+      "public function __get(string \\$${1:name}): mixed",
+      "{",
+      "\t${2:// dynamic getter}",
+      "\treturn null;",
+      "}",
+      "",
+      "public function __set(string \\$${1:name}, mixed \\$${3:value}): void",
+      "{",
+      "\t${0:// dynamic setter}",
+      "}"
+    ],
+    "description": "Magic property accessors"
+  }
 }

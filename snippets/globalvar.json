@@ -1,65 +1,171 @@
 {
-    "GLOBAL array": {
-        "prefix": "gglob",
-        "body": [
-            "\\$GLOBALS[\"${1:key}\"]"
-        ],
-        "description": "$GLOBALS array"
-    },
-    "SERVER array": {
-        "prefix": "gser",
-        "body": [
-            "\\$_SERVER[\"${1:key}\"]"
-        ],
-        "description": "$_SERVER array"
-    },
-    "REQUEST array": {
-        "prefix": "greq",
-        "body": [
-            "\\$_REQUEST[\"${1:key}\"]"
-        ],
-        "description": "$_REQUEST array"
-    },
-    "POST array": {
-        "prefix": "gpost",
-        "body": [
-            "\\$_POST[\"${1:key}\"]"
-        ],
-        "description": "$_POST array"
-    },
-    "GET array": {
-        "prefix": "gget",
-        "body": [
-            "\\$_GET[\"${1:key}\"]"
-        ],
-        "description": "$_GET array"
-    },
-    "FILES array": {
-        "prefix": "gfile",
-        "body": [
-            "\\$_FILES['${1:userfile}']['${2:key}']"
-        ],
-        "description": "$_FILES array"
-    },
-    "ENV array": {
-        "prefix": "genv",
-        "body": [
-            "\\$_ENV[\"${1:key}\"]"
-        ],
-        "description": "$_ENV array"
-    },
-    "COOKIE array": {
-        "prefix": "gcook",
-        "body": [
-            "\\$_COOKIE[\"${1:key}\"]"
-        ],
-        "description": "$_COOKIE array"
-    },
-    "SESSION array": {
-        "prefix": "gss",
-        "body": [
-            "\\$_SESSION[\"${1:key}\"]"
-        ],
-        "description": "$_SESSION array"
-    }
+  "Input GET (string sanitize)": {
+    "prefix": "in.get",
+    "body": [
+      "$${1:value} = filter_input(INPUT_GET, '${2:key}', FILTER_UNSAFE_RAW, [",
+      "\t'flags' => FILTER_FLAG_NO_ENCODE_QUOTES,",
+      "]); // sanitize/escape later at output"
+    ],
+    "description": "GET parameter via filter_input (string sanitize placeholder)"
+  },
+  "Input GET (validate int)": {
+    "prefix": "in.geti",
+    "body": [
+      "$${1:id} = filter_input(INPUT_GET, '${2:id}', FILTER_VALIDATE_INT);",
+      "if ($${1:id} === false || $${1:id} === null) {",
+      "\tthrow new InvalidArgumentException('Invalid ${2:id}');",
+      "}"
+    ],
+    "description": "GET parameter as validated integer"
+  },
+  "Input POST (string sanitize)": {
+    "prefix": "in.post",
+    "body": [
+      "$${1:value} = filter_input(INPUT_POST, '${2:key}', FILTER_UNSAFE_RAW, [",
+      "\t'flags' => FILTER_FLAG_NO_ENCODE_QUOTES,",
+      "]);"
+    ],
+    "description": "POST parameter via filter_input"
+  },
+  "Input COOKIE (safe read)": {
+    "prefix": "cookie.get",
+    "body": [
+      "$${1:val} = filter_input(INPUT_COOKIE, '${2:name}', FILTER_UNSAFE_RAW) ?? null;"
+    ],
+    "description": "Cookie read via filter_input"
+  },
+  "Set cookie (array options, SameSite)": {
+    "prefix": "cookie.set",
+    "body": [
+      "setcookie('${1:name}', ${2:value}, [",
+      "\t'expires'  => ${3:time() + 86400},",
+      "\t'path'     => '${4:/}',",
+      "\t'domain'   => ${5:null},",
+      "\t'secure'   => ${6:true},",
+      "\t'httponly' => ${7:true},",
+      "\t'samesite' => '${8:Lax}'",
+      "]);"
+    ],
+    "description": "Modern setcookie with options (PHP 7.3+, good for 8+)"
+  },
+  "Session start (secure options)": {
+    "prefix": "session.start",
+    "body": [
+      "session_start([",
+      "\t'cookie_secure'   => ${1:true},",
+      "\t'cookie_httponly' => ${2:true},",
+      "\t'cookie_samesite' => '${3:Lax}'",
+      "]);"
+    ],
+    "description": "Start session with secure cookie options"
+  },
+  "Session get/set helper": {
+    "prefix": "session.getset",
+    "body": [
+      "// get",
+      "$${1:value} = $_SESSION['${2:key}'] ?? null;",
+      "// set",
+      "$_SESSION['${2:key}'] = ${3:value};"
+    ],
+    "description": "Minimal session read/write (assumes session_start already)"
+  },
+  "Env read (getenv with default)": {
+    "prefix": "env.get",
+    "body": [
+      "$${1:val} = getenv('${2:KEY}') !== false ? getenv('${2:KEY}') : ${3:null};"
+    ],
+    "description": "Read environment with default fallback"
+  },
+  "Server param via filter_input (safer)": {
+    "prefix": "server.get",
+    "body": [
+      "$${1:ua} = filter_input(INPUT_SERVER, 'HTTP_USER_AGENT', FILTER_UNSAFE_RAW) ?? '';"
+    ],
+    "description": "Access selected $_SERVER keys via filter_input"
+  },
+  "Validate email": {
+    "prefix": "val.email",
+    "body": [
+      "$${1:email} = filter_var(${2:input}, FILTER_VALIDATE_EMAIL);",
+      "if ($${1:email} === false) {",
+      "\tthrow new InvalidArgumentException('Invalid email');",
+      "}"
+    ],
+    "description": "Validate email with filter_var"
+  },
+  "Validate URL": {
+    "prefix": "val.url",
+    "body": [
+      "$${1:url} = filter_var(${2:input}, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED | FILTER_FLAG_HOST_REQUIRED);",
+      "if ($${1:url} === false) {",
+      "\tthrow new InvalidArgumentException('Invalid URL');",
+      "}"
+    ],
+    "description": "Validate URL with filter_var"
+  },
+  "Input array (filter_input_array)": {
+    "prefix": "in.array",
+    "body": [
+      "$${1:data} = filter_input_array(INPUT_POST, [",
+      "\t'${2:id}'    => FILTER_VALIDATE_INT,",
+      "\t'${3:email}' => FILTER_VALIDATE_EMAIL,",
+      "\t'${4:name}'  => FILTER_UNSAFE_RAW,",
+      "]);",
+      "if ($${1:data} === null) {",
+      "\tthrow new RuntimeException('No input');",
+      "}"
+    ],
+    "description": "Batch input fetching with per-field filters"
+  },
+  "JSON input (php://input + json_validate 8.3+)": {
+    "prefix": "in.json",
+    "body": [
+      "$${1:raw} = file_get_contents('php://input') ?: '';",
+      "if (!function_exists('json_validate') || !json_validate($${1:raw})) {",
+      "\tthrow new InvalidArgumentException('Invalid JSON payload');",
+      "}",
+      "$${2:payload} = json_decode($${1:raw}, true, 512, JSON_THROW_ON_ERROR);"
+    ],
+    "description": "Read request body as JSON safely (PHP 8.3 json_validate)"
+  },
+  "Upload (safe handle + finfo)": {
+    "prefix": "upload.safe",
+    "body": [
+      "if (!isset($_FILES['${1:file}']) || $_FILES['${1:file}']['error'] !== UPLOAD_ERR_OK) {",
+      "\tthrow new RuntimeException('Upload failed');",
+      "}",
+      "$${2:tmp}  = $_FILES['${1:file}']['tmp_name'];",
+      "$${3:name} = basename($_FILES['${1:file}']['name']);",
+      "$${4:dst}  = __DIR__ . '/uploads/' . $${3:name};",
+      "",
+      "$finfo = new finfo(FILEINFO_MIME_TYPE);",
+      "$${5:mime} = $finfo->file($${2:tmp}) ?: 'application/octet-stream';",
+      "// TODO: allowlist check for $mime",
+      "if (!move_uploaded_file($${2:tmp}, $${4:dst})) {",
+      "\tthrow new RuntimeException('Failed to move uploaded file');",
+      "}"
+    ],
+    "description": "Handle file uploads safely (mime check + move_uploaded_file)"
+  },
+  "CSRF token (Randomizer + session)": {
+    "prefix": "csrf.make",
+    "body": [
+      "use Random\\Randomizer;",
+      "if (session_status() !== PHP_SESSION_ACTIVE) {",
+      "\tsession_start();",
+      "}",
+      "$${1:rnd} = new Randomizer();",
+      "$${2:token} = bin2hex($${1:rnd}->getBytes(32));",
+      "$_SESSION['csrf_token'] = $${2:token};"
+    ],
+    "description": "Generate CSRF token using Random\\Randomizer (PHP 8.2+ recommended)"
+  },
+  "Require param or throw (8.0 throw expr)": {
+    "prefix": "in.require",
+    "body": [
+      "$${1:id} = filter_input(${2:INPUT_GET}, '${3:id}', ${4:FILTER_VALIDATE_INT})",
+      "\t?? throw new InvalidArgumentException('Missing or invalid ${3:id}');"
+    ],
+    "description": "Compact required input fetch with throw expression (PHP 8.0+)"
+  }
 }

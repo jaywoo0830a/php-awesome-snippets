@@ -1,33 +1,151 @@
 {
-    "Array": {
-        "prefix": "arr",
-        "body": [
-            "[${1:value}, ${2:value}, $3];"
-        ],
-        "description": "Array [] block"
-    },
-    "Array key ... value": {
-        "prefix": "ark",
-        "body": [
-            "[",
-            "\t'${1:key}' => ${2:value},",
-            "\t'${3:key}' => ${4:value},$5",
-            "]"
-        ],
-        "description": "Array [] key => value block"
-    },
-    "Key ... value": {
-        "prefix": "kv",
-        "body": [
-            "'${1:key}' => ${2:value},"
-        ],
-        "description": "key => value statement"
-    },
-    "Array ... value": {
-        "prefix": "va",
-        "body": [
-            "${1:value}, "
-        ],
-        "description": "Array value statement"
-    }
+  "Array": {
+    "prefix": "arr",
+    "body": [
+      "[${1:value}, ${2:value}, $3];"
+    ],
+    "description": "Array [] block"
+  },
+  "Array key ... value": {
+    "prefix": "ark",
+    "body": [
+      "[",
+      "\t'${1:key}' => ${2:value},",
+      "\t'${3:key}' => ${4:value},$5",
+      "]"
+    ],
+    "description": "Array [] key => value block"
+  },
+  "Key ... value": {
+    "prefix": "kv",
+    "body": [
+      "'${1:key}' => ${2:value},"
+    ],
+    "description": "key => value statement"
+  },
+  "Array ... value": {
+    "prefix": "va",
+    "body": [
+      "${1:value}, "
+    ],
+    "description": "Array value statement"
+  },
+
+  // ---------- PHP 8.0+ additions below ----------
+
+  "Array (multiline, trailing comma)": {
+    "prefix": "arrm",
+    "body": [
+      "[",
+      "\t${1:value},",
+      "\t${2:value},",
+      "\t${3:value},",
+      "]$0"
+    ],
+    "description": "Multiline array with trailing comma (PHP 8+ friendly diffs)"
+  },
+  "Assoc array (multiline, trailing comma)": {
+    "prefix": "arkm",
+    "body": [
+      "[",
+      "\t'${1:key}' => ${2:value},",
+      "\t'${3:key}' => ${4:value},",
+      "\t'${5:key}' => ${6:value},",
+      "]$0"
+    ],
+    "description": "Multiline assoc array with trailing comma"
+  },
+  "Merge arrays via spread (PHP 8.1: string keys OK)": {
+    "prefix": "arrmerge",
+    "body": [
+      "$${1:merged} = [...$${2:base}, ...$${3:override}];$0"
+    ],
+    "description": "Merge arrays with spread; string-key overrides apply (PHP 8.1+)"
+  },
+  "Unpack into function call": {
+    "prefix": "arrpack",
+    "body": [
+      "$${1:result} = ${2:fn}(...$${3:args});$0"
+    ],
+    "description": "Variadic unpack for function/method calls"
+  },
+  "Array destructuring (numeric)": {
+    "prefix": "arrdestr",
+    "body": [
+      "[${1:first}, ${2:second}] = $${3:array};$0"
+    ],
+    "description": "Array destructuring for numeric-indexed arrays"
+  },
+  "Array destructuring (assoc keys)": {
+    "prefix": "arrdestra",
+    "body": [
+      "['${1:id}' => $${2:id}, '${3:name}' => $${4:name}] = $${5:row};$0"
+    ],
+    "description": "Array destructuring with explicit string keys (PHP 7.1+)"
+  },
+  "array_map with arrow function (PHP 7.4+; pairs well with 8.x)": {
+    "prefix": "arrmap",
+    "body": [
+      "$${1:out} = array_map(fn($${2:x}) => ${3:expr}, $${4:items});$0"
+    ],
+    "description": "array_map using short arrow fn; great with first-class callables in 8.1+"
+  },
+  "array_filter keep and reindex (values())": {
+    "prefix": "arrfilter",
+    "body": [
+      "$${1:out} = array_values(array_filter($${2:items}, fn($${3:x}) => ${4:predicate}));$0"
+    ],
+    "description": "Filter then reindex to keep a clean 0..N array"
+  },
+  "Sort by key with spaceship (usort)": {
+    "prefix": "arrsort",
+    "body": [
+      "usort($${1:items}, fn($a, $b) => ($a['${2:key}'] ?? null) <=> ($b['${2:key}'] ?? null));$0"
+    ],
+    "description": "Stable key sort using spaceship; null-safe coalescing"
+  },
+  "Group by key (reduce)": {
+    "prefix": "arrgroup",
+    "body": [
+      "$${1:grouped} = array_reduce($${2:items}, function(array $carry, $item): array {",
+      "\t$k = ${3:expr for key};",
+      "\t$carry[$k] ??= [];",
+      "\t$carry[$k][] = $item;",
+      "\treturn $carry;",
+      "}, []);$0"
+    ],
+    "description": "Group array items by computed key using array_reduce"
+  },
+  "array_is_list check (PHP 8.1+)": {
+    "prefix": "arrisl",
+    "body": [
+      "if (array_is_list($${1:arr})) {",
+      "\t${2:// handle list-like array}",
+      "} else {",
+      "\t${3:// handle assoc array}",
+      "}$0"
+    ],
+    "description": "Branch logic based on whether array is a sequential list"
+  },
+  "array_column with default and reindex": {
+    "prefix": "arrcol",
+    "body": [
+      "$${1:ids} = array_values(array_filter(array_column($${2:rows}, '${3:id}')));$0"
+    ],
+    "description": "Extract a column, drop null/falsey rows, and reindex"
+  },
+  "Pipeline map->filter->reduce (concise)": {
+    "prefix": "amfr",
+    "body": [
+      "$${1:result} = array_reduce(",
+      "\tarray_filter(",
+      "\t\tarray_map(fn($x) => ${2:mapExpr}, $${3:items})",
+      "\t\t, fn($x) => ${4:filterPredicate}",
+      "\t),",
+      "\tfn($carry, $x) => ${5:reduceExpr},",
+      "\t${6:initial}",
+      ");$0"
+    ],
+    "description": "Quick map→filter→reduce pipeline using arrow functions"
+  }
 }

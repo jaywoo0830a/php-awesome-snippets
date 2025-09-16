@@ -71,10 +71,6 @@
             },
             {
                 "language": "php",
-                "path": "./snippets/method.php5.json"
-            },
-            {
-                "language": "php",
                 "path": "./snippets/statement.json"
             },
             {

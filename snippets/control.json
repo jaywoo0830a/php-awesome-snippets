@@ -1,101 +1,283 @@
 {
-    "If ... endif": {
-        "prefix": "ifen",
-        "body": [
-            "if (${1:condition}):",
-            "\t${0:# code...}",
-            "endif;"
-        ],
-        "description": "If endif block"
-    },
-    "If ... else ... endif": {
-        "prefix": "ifelen",
-        "body": [
-            "if (${1:condition}):",
-            "\t${2:# code...}",
-            "else:",
-            "\t${0:# code...}",
-            "endif;"
-        ],
-        "description": "If else endif block"
-    },
-    "If ... elseif ... else ... endif": {
-        "prefix": "ifelifen",
-        "body": [
-            "if (${1:condition}):",
-            "\t${2:# code...}",
-            "elseif (${3:condition}):",
-            "\t${4:# code...}",
-            "else:",
-            "\t${0:# code...}",
-            "endif;"
-        ],
-        "description": "If elseif else endif block"
-    },
-    "If block": {
-        "prefix": "ifb",
-        "body": [
-            "if (${1:condition}) {",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "If  block"
-    },
-    "If ... else": {
-        "prefix": "ifel",
-        "body": [
-            "if (${1:condition}) {",
-            "\t${2:# code...}",
-            "} else {",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "If else block"
-    },
-    "If ... elseif ... else": {
-        "prefix": "ifelif",
-        "body": [
-            "if (${1:condition}) {",
-            "\t${2:# code...}",
-            "} elseif (${3:condition}) {",
-            "\t${4:# code...}",
-            "} else {",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "If elseif else block"
-    },
-    "Switch block": {
-        "prefix": "sw",
-        "body": [
-            "switch (\\$${1:variable}) {",
-            "\tcase '${2:label}':",
-            "\t\t${3:# code...}",
-            "\t\tbreak;",
-            "\tcase '${4:label}':",
-            "\t\t${5:# code...}",
-            "\t\tbreak;$6",
-            "\tdefault:",
-            "\t\t${0:# code...}",
-            "\t\tbreak;",
-            "}"
-        ],
-        "description": "Switch block"
-    },
-    "Case statement": {
-        "prefix": "cs",
-        "body": [
-            "case '${1:label}':",
-            "\t${2:# code...}",
-            "\tbreak;"
-        ],
-        "description": "Case addon block"
-    },
-    "Ternary operator": {
-        "prefix": "tern",
-        "body": [
-            "${1:condition} ? ${2:if_true} : ${3:if_false};"
-        ],
-        "description": "Ternary statement"
-    }
+  "If ... endif": {
+    "prefix": "ifen",
+    "body": [
+      "if (${1:condition}):",
+      "\t${0:// code...}",
+      "endif;"
+    ],
+    "description": "If endif block"
+  },
+  "If ... else ... endif": {
+    "prefix": "ifelen",
+    "body": [
+      "if (${1:condition}):",
+      "\t${2:// code...}",
+      "else:",
+      "\t${0:// code...}",
+      "endif;"
+    ],
+    "description": "If else endif block"
+  },
+  "If ... elseif ... else ... endif": {
+    "prefix": "ifelifen",
+    "body": [
+      "if (${1:condition}):",
+      "\t${2:// code...}",
+      "elseif (${3:condition}):",
+      "\t${4:// code...}",
+      "else:",
+      "\t${0:// code...}",
+      "endif;"
+    ],
+    "description": "If elseif else endif block"
+  },
+  "If block": {
+    "prefix": "ifb",
+    "body": [
+      "if (${1:condition}) {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "If block"
+  },
+  "If ... else": {
+    "prefix": "ifel",
+    "body": [
+      "if (${1:condition}) {",
+      "\t${2:// code...}",
+      "} else {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "If else block"
+  },
+  "If ... elseif ... else": {
+    "prefix": "ifelif",
+    "body": [
+      "if (${1:condition}) {",
+      "\t${2:// code...}",
+      "} elseif (${3:condition}) {",
+      "\t${4:// code...}",
+      "} else {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "If elseif else block"
+  },
+  "Switch block": {
+    "prefix": "sw",
+    "body": [
+      "switch (\\$${1:variable}) {",
+      "\tcase '${2:label}':",
+      "\t\t${3:// code...}",
+      "\t\tbreak;",
+      "\tcase '${4:label}':",
+      "\t\t${5:// code...}",
+      "\t\tbreak;$6",
+      "\tdefault:",
+      "\t\t${0:// code...}",
+      "\t\tbreak;",
+      "}"
+    ],
+    "description": "Switch block"
+  },
+  "Case statement": {
+    "prefix": "cs",
+    "body": [
+      "case '${1:label}':",
+      "\t${2:// code...}",
+      "\tbreak;"
+    ],
+    "description": "Case addon block"
+  },
+  "Ternary operator": {
+    "prefix": "tern",
+    "body": [
+      "${1:condition} ? ${2:if_true} : ${3:if_false};"
+    ],
+    "description": "Ternary statement"
+  },
+
+  "Guard clause (early return)": {
+    "prefix": "guard",
+    "body": [
+      "if (!${1:condition}) {",
+      "\treturn${2:;}",
+      "}"
+    ],
+    "description": "Early return guard to reduce nesting"
+  },
+  "Null coalesce operator": {
+    "prefix": "nco",
+    "body": [
+      "$${1:value} = ${2:expr} ?? ${3:default};"
+    ],
+    "description": "Use ?? to provide defaults"
+  },
+  "Null coalesce assignment (PHP 7.4+, 8+)": {
+    "prefix": "nca",
+    "body": [
+      "$${1:var} ??= ${2:default};"
+    ],
+    "description": "Assign default only if var is null/undefined"
+  },
+  "Throw expression with ?? (PHP 8.0+)": {
+    "prefix": "throwcoalesce",
+    "body": [
+      "$${1:id} = $${2:data}['${3:id}'] ?? throw new ${4:InvalidArgumentException}('${5:Missing id}');"
+    ],
+    "description": "Throw as an expression when value is absent"
+  },
+  "Throw expression (ternary) (PHP 8.0+)": {
+    "prefix": "throwtern",
+    "body": [
+      "${1:condition} ? ${2:okExpr} : throw new ${3:RuntimeException}('${4:Error}');"
+    ],
+    "description": "Use throw in ternary false-branch"
+  },
+
+  "Match expression (simple) (PHP 8.0+)": {
+    "prefix": "match",
+    "body": [
+      "$${1:result} = match ($${2:expr}) {",
+      "\t${3:CaseA} => ${4:ValueA},",
+      "\t${5:CaseB} => ${6:ValueB},",
+      "\tdefault => ${7:DefaultValue},",
+      "};"
+    ],
+    "description": "match expression replacing many switch branches"
+  },
+  "Match expression (boolean guards via match(true))": {
+    "prefix": "matchtrue",
+    "body": [
+      "$${1:result} = match (true) {",
+      "\t${2:condA} => ${3:ValueA},",
+      "\t${4:condB} => ${5:ValueB},",
+      "\tdefault => ${6:DefaultValue},",
+      "};"
+    ],
+    "description": "Pattern-like branching with match(true)"
+  },
+  "Match expression (with function call result)": {
+    "prefix": "matchfn",
+    "body": [
+      "$${1:message} = match (${2:httpStatus}()) {",
+      "\t200, 201, 204 => 'Success',",
+      "\t400, 404 => 'Client Error',",
+      "\t500, 502, 503 => 'Server Error',",
+      "\tdefault => 'Unknown',",
+      "};"
+    ],
+    "description": "match using computed value"
+  },
+
+  "Nullsafe chain (PHP 8.0+)": {
+    "prefix": "nullsafe",
+    "body": [
+      "$${1:value} = $${2:obj}?->${3:getter}()?->${4:field} ?? ${5:'n/a'};"
+    ],
+    "description": "Use ?-> and ?? to traverse safely"
+  },
+
+  "Foreach (key => value)": {
+    "prefix": "fe",
+    "body": [
+      "foreach ($${1:items} as $${2:key} => $${3:value}) {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "foreach with key => value"
+  },
+  "Foreach (by reference)": {
+    "prefix": "fer",
+    "body": [
+      "foreach ($${1:items} as &\\$${2:value}) {",
+      "\t${0:// mutate value...}",
+      "}"
+    ],
+    "description": "foreach by reference when mutating"
+  },
+  "Foreach destructuring (numeric list)": {
+    "prefix": "fedestruct",
+    "body": [
+      "foreach ($${1:items} as [${2:first}, ${3:second}]) {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Destructure numeric-indexed arrays in foreach"
+  },
+  "Foreach destructuring (assoc keys)": {
+    "prefix": "fedestructa",
+    "body": [
+      "foreach ($${1:rows} as ['${2:id}' => $${3:id}, '${4:name}' => $${5:name}]) {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Destructure associative arrays in foreach (PHP 7.1+)"
+  },
+
+  "For loop": {
+    "prefix": "for",
+    "body": [
+      "for ($${1:i} = ${2:0}; $${1:i} < ${3:n}; $${1:i}++) {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Classic for loop"
+  },
+  "While loop": {
+    "prefix": "while",
+    "body": [
+      "while (${1:condition}) {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "While loop"
+  },
+  "Do ... while loop": {
+    "prefix": "dowhile",
+    "body": [
+      "do {",
+      "\t${1:// code...}",
+      "} while (${2:condition});"
+    ],
+    "description": "Do-while loop"
+  },
+
+  "Try / catch (Throwable) (PHP 7+, 8+)": {
+    "prefix": "tryc",
+    "body": [
+      "try {",
+      "\t${1:// code...}",
+      "} catch (Throwable $${2:e}) {",
+      "\t${0:// handle error}",
+      "}"
+    ],
+    "description": "Catch all throwables (errors + exceptions)"
+  },
+  "Try / multi-catch (union) (PHP 8.0+)": {
+    "prefix": "trymc",
+    "body": [
+      "try {",
+      "\t${1:// code...}",
+      "} catch (${2:InvalidArgumentException}|${3:RuntimeException} $${4:e}) {",
+      "\t${0:// handle expected failures}",
+      "}"
+    ],
+    "description": "Multi-catch with union types"
+  },
+  "Try / catch / finally": {
+    "prefix": "trycf",
+    "body": [
+      "try {",
+      "\t${1:// code...}",
+      "} catch (${2:Exception} $${3:e}) {",
+      "\t${4:// handle error}",
+      "} finally {",
+      "\t${0:// cleanup}",
+      "}"
+    ],
+    "description": "Try-catch-finally block"
+  }
 }

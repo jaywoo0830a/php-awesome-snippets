@@ -1,83 +1,173 @@
 {
-    "Foreach loop": {
-        "prefix": "fore",
-        "body": [
-            "foreach (\\$${1:iterable} as \\$${2:item}) {",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Foreach as $item block"
-    },
-    "Foreach ... key ... item": {
-        "prefix": "forek",
-        "body": [
-            "foreach (\\$${1:iterable} as \\$${2:key} => \\$${3:item}) {",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Foreach as $key => $item block"
-    },
-    "Foreach ... end": {
-        "prefix": "foren",
-        "body": [
-            "foreach (\\$${1:iterable} as \\$${2:item}):",
-            "\t${0:# code...}",
-            "endforeach;"
-        ],
-        "description": "Foreach end as $item block"
-    },
-    "Foreach ... key ... item ... end": {
-        "prefix": "forenk",
-        "body": [
-            "foreach (\\$${1:iterable} as \\$${2:key} => \\$${3:item}):",
-            "\t${0:# code...}",
-            "endforeach;"
-        ],
-        "description": "Foreach end as $key => $item block"
-    },
-    "For loop": {
-        "prefix": "forl",
-        "body": [
-            "for (\\$${1:i} = ${2:0}; \\$${1:i} < \\$${3:limit}; \\$${1:i}++) {",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "For loop"
-    },
-    "For ... end": {
-        "prefix": "forlen",
-        "body": [
-            "for (\\$${1:i} = ${2:0}; \\$${1:i} < \\$${3:limit}; \\$${1:i}++):",
-            "\t${0:# code...}",
-            "endfor;"
-        ],
-        "description": "For end loop"
-    },
-    "While loop": {
-        "prefix": "wl",
-        "body": [
-            "while (\\$${1:variable} ${2:<=} \\$${3:limit}) {",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "While loop"
-    },
-    "While ... end": {
-        "prefix": "wlen",
-        "body": [
-            "while (\\$${1:variable} ${2:<=} \\$${3:limit}):",
-            "\t${0:# code...}",
-            "endwhile;"
-        ],
-        "description": "While end loop"
-    },
-    "Do ... while": {
-        "prefix": "dowl",
-        "body": [
-            "do {",
-            "\t${0:# code...}",
-            "} while (\\$${1:variable} ${2:<=} \\$${3:limit});"
-        ],
-        "description": "Do while loop"
-    }
+  "Foreach loop": {
+    "prefix": "fore",
+    "body": [
+      "foreach (\\$${1:iterable} as \\$${2:item}) {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "foreach as $item"
+  },
+  "Foreach ... key ... item": {
+    "prefix": "forek",
+    "body": [
+      "foreach (\\$${1:iterable} as \\$${2:key} => \\$${3:item}) {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "foreach as $key => $item"
+  },
+  "Foreach (by reference)": {
+    "prefix": "forer",
+    "body": [
+      "foreach (\\$${1:items} as &\\$${2:item}) {",
+      "\t${0:// mutate in-place}",
+      "}"
+    ],
+    "description": "foreach by reference (in-place mutation)"
+  },
+  "Foreach destructuring (numeric list)": {
+    "prefix": "forelist",
+    "body": [
+      "foreach (\\$${1:pairs} as [\\$${2:a}, \\$${3:b}]) {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Destructure numeric-index tuples e.g. [[x,y], ...]"
+  },
+  "Foreach destructuring (assoc keys)": {
+    "prefix": "foreassoc",
+    "body": [
+      "foreach (\\$${1:rows} as ['${2:id}' => \\$${3:id}, '${4:name}' => \\$${5:name}]) {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Destructure associative arrays in foreach"
+  },
+
+  "For loop": {
+    "prefix": "forl",
+    "body": [
+      "for (\\$${1:i} = ${2:0}; \\$${1:i} < \\$${3:limit}; \\$${1:i}++) {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "for i=0..limit-1"
+  },
+  "For (guard continue)": {
+    "prefix": "forg",
+    "body": [
+      "for (\\$${1:i} = ${2:0}; \\$${1:i} < \\$${3:n}; \\$${1:i}++) {",
+      "\tif (!${4:condition}) {",
+      "\t\tcontinue; // guard to reduce nesting",
+      "\t}",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "for with early-continue guard"
+  },
+
+  "While loop": {
+    "prefix": "wl",
+    "body": [
+      "while (${1:condition}) {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "while (...) { ... }"
+  },
+  "Do ... while": {
+    "prefix": "dowl",
+    "body": [
+      "do {",
+      "\t${0:// code...}",
+      "} while (${1:condition});"
+    ],
+    "description": "do { ... } while (...)"
+  },
+  "While read line (fgets)": {
+    "prefix": "wlfile",
+    "body": [
+      "while ((\\$${1:line} = fgets(\\$${2:fp})) !== false) {",
+      "\t${0:// process $line}",
+      "}"
+    ],
+    "description": "Common IO loop pattern with fgets"
+  },
+
+  "Generator (yield values)": {
+    "prefix": "gen",
+    "body": [
+      "function ${1:rangeInclusive}(int \\$${2:start}, int \\$${3:end}): \\Generator {",
+      "\tfor (\\$i = \\$${2:start}; \\$i <= \\$${3:end}; \\$i++) {",
+      "\t\tyield \\$i; // lazy sequence",
+      "\t}",
+      "}"
+    ],
+    "description": "Generator producing a lazy range"
+  },
+  "Generator (yield from)": {
+    "prefix": "genfrom",
+    "body": [
+      "function ${1:flatten}(iterable \\$${2:it}): \\Generator {",
+      "\tforeach (\\$${2:it} as \\$${3:chunk}) {",
+      "\t\tyield from \\$${3:chunk};",
+      "\t}",
+      "}"
+    ],
+    "description": "Delegate yielding via yield from"
+  },
+
+  "Chunked loop (array_chunk)": {
+    "prefix": "chunk",
+    "body": [
+      "foreach (array_chunk(\\$${1:items}, ${2:1000}) as \\$${3:chunk}) {",
+      "\t${0:// process chunk}",
+      "}"
+    ],
+    "description": "Batch processing in chunks to save memory"
+  },
+  "Windowed loop (sliding)": {
+    "prefix": "window",
+    "body": [
+      "for (\\$${1:i} = 0, \\$${2:n} = count(\\$${3:items}); \\$${1:i} + ${4:k} <= \\$${2:n}; \\$${1:i}++) {",
+      "\t\\$${5:window} = array_slice(\\$${3:items}, \\$${1:i}, ${4:k});",
+      "\t${0:// process $window}",
+      "}"
+    ],
+    "description": "Sliding window over an array"
+  },
+
+  "Loop with timeout (monotonic clock)": {
+    "prefix": "looptimeout",
+    "body": [
+      "\\$${1:start} = hrtime(true); // nanoseconds",
+      "while (true) {",
+      "\tif ((hrtime(true) - \\$${1:start}) > ${2:1_000_000_000}) { // 1s",
+      "\t\tbreak; // timeout",
+      "\t}",
+      "\t${0:// work...}",
+      "}"
+    ],
+    "description": "Loop that breaks on monotonic timeout (hrtime)"
+  },
+
+  "Parallel loop (array_map + callable)": {
+    "prefix": "maploop",
+    "body": [
+      "\\$${1:fn} = ${2:strtoupper}(...); // first-class callable (PHP 8.1+)",
+      "\\$${3:out} = array_map(\\$${1:fn}, \\$${4:items});"
+    ],
+    "description": "Functional mapping with first-class callable"
+  },
+
+  "Foreach (index enumerate)": {
+    "prefix": "forenum",
+    "body": [
+      "foreach (array_values(\\$${1:items}) as \\$${2:i} => \\$${3:item}) {",
+      "\t${0:// $i is 0..N index}",
+      "}"
+    ],
+    "description": "Enumerated foreach (0-based index)"
+  }
 }

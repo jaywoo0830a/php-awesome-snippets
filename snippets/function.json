@@ -1,29 +1,182 @@
 {
-    "Function": {
-        "prefix": "fn",
-        "body": [
-            "function ${1:func_name}(${2:Type} \\$${3:args}): ${4:void} {",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Function block"
-    },
-    "Anonymous function": {
-        "prefix": "fna",
-        "body": [
-            "function (${1:Type} \\$${2:args}): ${3:void} {",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Anonymous function block"
-    },
-    "Anonymous function ... use": {
-        "prefix": "fnu",
-        "body": [
-            "function (${1:Type} \\$${2:args}) use (\\$${3:vars}): ${4:void} {",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "Anonymous function with use block"
-    }
+  "Function": {
+    "prefix": "fn",
+    "body": [
+      "function ${1:func_name}(${2:Type} \\$${3:arg}): ${4:void} {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Function block"
+  },
+  "Anonymous function": {
+    "prefix": "fna",
+    "body": [
+      "function (${1:Type} \\$${2:arg}): ${3:void} {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Anonymous function block"
+  },
+  "Anonymous function ... use": {
+    "prefix": "fnu",
+    "body": [
+      "function (${1:Type} \\$${2:arg}) use (\\$${3:vars}): ${4:void} {",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Anonymous function with use block"
+  },
+
+  /* ---------- PHP 8.0+ additions ---------- */
+
+  "Function (union types)": {
+    "prefix": "fnunion",
+    "body": [
+      "function ${1:normalize}(int|string|array \\$${2:value}): array {",
+      "\treturn is_array(\\$${2:value}) ? \\$${2:value} : [\\$${2:value}];",
+      "}"
+    ],
+    "description": "Union-typed parameter (PHP 8.0+)"
+  },
+  "Function (nullable param & return)": {
+    "prefix": "fnnullable",
+    "body": [
+      "function ${1:maybeFormat}(?string \\$${2:text}): ?string {",
+      "\treturn \\$${2:text} !== null ? trim(\\$${2:text}) : null;",
+      "}"
+    ],
+    "description": "Nullable parameter and return (PHP 8.0+)"
+  },
+  "Function (mixed param)": {
+    "prefix": "fnmixed",
+    "body": [
+      "function ${1:debugDump}(mixed \\$${2:value}): void {",
+      "\tvar_dump(\\$${2:value});",
+      "}"
+    ],
+    "description": "mixed type (PHP 8.0+)"
+  },
+  "Function (variadic)": {
+    "prefix": "fnvar",
+    "body": [
+      "function ${1:sum}(int ...\\$${2:xs}): int {",
+      "\treturn array_sum(\\$${2:xs});",
+      "}"
+    ],
+    "description": "Variadic parameters with type (PHP 7.1+, great for 8+)"
+  },
+  "Arrow function (short closure)": {
+    "prefix": "afn",
+    "body": [
+      "\\$${1:fn} = fn(${2:Type} \\$${3:x}) => ${4:expr};"
+    ],
+    "description": "Short arrow function (PHP 7.4+, pairs well with 8+)"
+  },
+  "First-class callable (PHP 8.1+)": {
+    "prefix": "fcc",
+    "body": [
+      "\\$${1:call} = ${2:strtoupper}(...);",
+      "\\$${3:result} = array_map(\\$${1:call}, \\$${4:items});"
+    ],
+    "description": "First-class callable syntax (8.1+)"
+  },
+  "Function with attributes (PHP 8.0+)": {
+    "prefix": "fnattr",
+    "body": [
+      "#[${1:Route}('${2:GET}', '${3:/health}')]",
+      "function ${4:healthCheck}(): ${5:array} {",
+      "\treturn ['status' => 'ok'];",
+      "}"
+    ],
+    "description": "Function decorated with attribute"
+  },
+  "Function (throws via expression) (PHP 8.0+)": {
+    "prefix": "fnthrexpr",
+    "body": [
+      "function ${1:requireId}(array \\$${2:data}): int {",
+      "\t\\$id = \\$${2:data}['${3:id}'] ?? throw new ${4:InvalidArgumentException}('${5:Missing id}');",
+      "\treturn (int) \\$id;",
+      "}"
+    ],
+    "description": "Use throw as an expression inside function body (8.0+)"
+  },
+  "Function (generator)": {
+    "prefix": "fngen",
+    "body": [
+      "function ${1:rangeInclusive}(int \\$${2:start}, int \\$${3:end}): \\Generator {",
+      "\tfor (\\$i = \\$${2:start}; \\$i <= \\$${3:end}; \\$i++) {",
+      "\t\tyield \\$i;",
+      "\t}",
+      "}"
+    ],
+    "description": "Generator function yielding values"
+  },
+  "Higher-order function (returns Closure)": {
+    "prefix": "fnhof",
+    "body": [
+      "function ${1:multiplier}(int \\$${2:k}): \\Closure {",
+      "\treturn function (int \\$${3:x}): int {",
+      "\t\treturn \\$${2:k} * \\$${3:x};",
+      "\t};",
+      "}"
+    ],
+    "description": "Returns a typed Closure (higher-order function)"
+  },
+  "Function (named args example call)": {
+    "prefix": "fnnamed",
+    "body": [
+      "function ${1:connect}(string \\$${2:host}, int \\$${3:port} = 3306, bool \\$${4:ssl} = false): void {",
+      "\t// ...",
+      "}",
+      "",
+      "${0:${1:connect}(host: 'localhost', port: 3306, ssl: true);}"
+    ],
+    "description": "Define and call with named arguments (PHP 8.0+)"
+  },
+  "Function (intersection type param, 8.1+)": {
+    "prefix": "fninter",
+    "body": [
+      "function ${1:consume}(\\Traversable&\\Countable \\$${2:collection}): int {",
+      "\treturn count(iterator_to_array(\\$${2:collection}));",
+      "}"
+    ],
+    "description": "Intersection types for parameters (PHP 8.1+)"
+  },
+  "Function (never return type, 8.1+)": {
+    "prefix": "fnnever",
+    "body": [
+      "function ${1:panic}(string \\$${2:message}): never {",
+      "\tthrow new ${3:RuntimeException}(\\$${2:message});",
+      "}"
+    ],
+    "description": "Function that never returns (PHP 8.1+)"
+  },
+  "Function (try/catch around body)": {
+    "prefix": "fntry",
+    "body": [
+      "function ${1:runSafe}(${2:int} \\$${3:x}): ${4:int} {",
+      "\ttry {",
+      "\t\treturn ${5:abs}(\\$${3:x});",
+      "\t} catch (\\Throwable \\$${6:e}) {",
+      "\t\t${7:// handle or rethrow}",
+      "\t\tthrow \\$${6:e};",
+      "\t}",
+      "}"
+    ],
+    "description": "Function skeleton with try/catch (Throwable)"
+  },
+  "Function (strict_types + namespace header)": {
+    "prefix": "fnfile",
+    "body": [
+      "<?php",
+      "declare(strict_types=1);",
+      "",
+      "namespace ${1:App\\\\Support};",
+      "",
+      "function ${2:helper}(${3:string} \\$${4:name}): ${5:string} {",
+      "\treturn \"Hello, \\$${4:name}\";",
+      "}"
+    ],
+    "description": "File-level boilerplate: strict_types + namespace + function"
+  }
 }

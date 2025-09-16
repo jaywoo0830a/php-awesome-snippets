@@ -1,65 +1,127 @@
 {
-    "define": {
-        "prefix": "df",
-        "body": [
-            "define(\"${1:CONSTANT}\", \"${2:value}\");"
-        ],
-        "description": "'define' call"
-    },
-    "include": {
-        "prefix": "inc",
-        "body": [
-            "include ${1:__DIR__.}'${2:path_to_filename}';"
-        ],
-        "description": "'include' statement"
-    },
-    "include_once": {
-        "prefix": "inco",
-        "body": [
-            "include_once ${1:__DIR__.}'${2:path_to_filename}';"
-        ],
-        "description": "'include_once' statement"
-    },
-    "require": {
-        "prefix": "rqr",
-        "body": [
-            "require ${1:__DIR__.}'${2:path_to_filename}';"
-        ],
-        "description": "'require' statement"
-    },
-    "require_once": {
-        "prefix": "rqro",
-        "body": [
-            "require_once ${1:__DIR__.}'${2:path_to_filename}';"
-        ],
-        "description": "'require_once' statement"
-    },
-    "echo": {
-        "prefix": "eco",
-        "body": [
-            "echo \"${1:text}\";"
-        ],
-        "description": "'echo' statement"
-    },
-    "print_r": {
-        "prefix": "pr",
-        "body": [
-            "print_r(\\$${1:variable});"
-        ],
-        "description": "'print_r' call"
-    },
-    "var_dump": {
-        "prefix": "vd",
-        "body": [
-            "var_dump(\\$${1:variable});"
-        ],
-        "description": "'var_dump' call"
-    },
-    "var_export": {
-        "prefix": "vx",
-        "body": [
-            "var_export(\\$${1:variable});"
-        ],
-        "description": "'var_export' call"
-    }
+  "Constant (prefer const over define)": {
+    "prefix": "const",
+    "body": [
+      "const ${1:NAME} = ${2:123};"
+    ],
+    "description": "Declare constant (modern replacement for define)"
+  },
+
+  "Require Composer autoload": {
+    "prefix": "rqa",
+    "body": [
+      "require_once __DIR__ . '/${1:../vendor/autoload}.php';"
+    ],
+    "description": "Require Composer autoloader (prefer over manual includes)"
+  },
+  "Require file": {
+    "prefix": "rqr",
+    "body": [
+      "require __DIR__ . '/${1:path_to_filename}.php';"
+    ],
+    "description": "Require a PHP file (halts on failure; prefer over include)"
+  },
+  "Require once file": {
+    "prefix": "rqro",
+    "body": [
+      "require_once __DIR__ . '/${1:path_to_filename}.php';"
+    ],
+    "description": "Require once (idempotent include)"
+  },
+
+  "Echo text": {
+    "prefix": "eco",
+    "body": [
+      "echo ${1:\"text\"};"
+    ],
+    "description": "echo string (simple output)"
+  },
+  "Printf": {
+    "prefix": "printf",
+    "body": [
+      "printf(${1:\"Hello %s\\n\"}, ${2:$name});"
+    ],
+    "description": "Formatted output using printf"
+  },
+  "Sprintf assign": {
+    "prefix": "sprintf",
+    "body": [
+      "$${1:out} = sprintf(${2:\"%s (%d)\"}, ${3:$name}, ${4:$count});"
+    ],
+    "description": "Format into a string variable"
+  },
+
+  "Echo JSON response (headers + flags)": {
+    "prefix": "echo.json",
+    "body": [
+      "header('Content-Type: application/json; charset=utf-8');",
+      "echo json_encode(${1:$data}, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);"
+    ],
+    "description": "Safe JSON output with strict flags (PHP 8+)"
+  },
+  "Decode JSON (strict)": {
+    "prefix": "json.decode",
+    "body": [
+      "$${1:payload} = json_decode(${2:$json}, true, 512, JSON_THROW_ON_ERROR);"
+    ],
+    "description": "Decode JSON with exceptions (no silent failure)"
+  },
+
+  "Var dump (quick debug)": {
+    "prefix": "vd",
+    "body": [
+      "var_dump(${1:$variable});"
+    ],
+    "description": "var_dump for quick debugging"
+  },
+  "Var export (as string)": {
+    "prefix": "vx",
+    "body": [
+      "echo var_export(${1:$variable}, true);"
+    ],
+    "description": "var_export to string and echo"
+  },
+  "print_r (to string)": {
+    "prefix": "pr",
+    "body": [
+      "echo print_r(${1:$variable}, true);"
+    ],
+    "description": "print_r returning string (explicit echo)"
+  },
+
+  "Exit with code": {
+    "prefix": "exit",
+    "body": [
+      "exit(${1:0}); // 0=success, non-zero=error"
+    ],
+    "description": "Terminate script with status code"
+  },
+
+  "Strict types header": {
+    "prefix": "strict",
+    "body": [
+      "<?php",
+      "declare(strict_types=1);"
+    ],
+    "description": "Enable strict types at file top (PHP 7+; recommended in 8+)"
+  },
+
+  "Nowdoc (raw multi-line)": {
+    "prefix": "nowdoc",
+    "body": [
+      "$${1:text} = <<<'${2:TXT}'",
+      "${3:multi-line content}",
+      "${2:TXT};"
+    ],
+    "description": "Raw multi-line string without interpolation"
+  },
+  "Heredoc (interpolated multi-line)": {
+    "prefix": "heredoc",
+    "body": [
+      "$${1:text} = <<<${2:TXT}",
+      "${3:Hello, $name}",
+      "${2:TXT};"
+    ],
+    "description": "Interpolated multi-line string"
+  }
 }

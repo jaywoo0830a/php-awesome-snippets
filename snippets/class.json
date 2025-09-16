@@ -1,152 +1,349 @@
 {
-    "Class": {
-        "prefix": "cl",
-        "body": [
-            "class ${1:ClassName}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP Class block"
-    },
-    "Class extends": {
-        "prefix": "clx",
-        "body": [
-            "class ${1:ClassName} extends ${2:MotherClass}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP Class extends block"
-    },
-    "Class implements": {
-        "prefix": "cli",
-        "body": [
-            "class ${1:ClassName} implements ${2:Interfaces}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP Class implements block"
-    },
-    "Class extends implements": {
-        "prefix": "clxi",
-        "body": [
-            "class ${1:ClassName} extends ${2:MotherClass} implements ${3:Interfaces}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP Class extends and implements block"
-    },
-    "Abstract class": {
-        "prefix": "acl",
-        "body": [
-            "abstract class ${1:ClassName}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP abstract Class block"
-    },
-    "Abstract class extends": {
-        "prefix": "aclx",
-        "body": [
-            "abstract class ${1:ClassName} extends ${2:MotherClass}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP abstract Class extends block"
-    },
-    "Abstract class implements": {
-        "prefix": "acli",
-        "body": [
-            "abstract class ${1:ClassName} implements ${2:Interfaces}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP abstract Class implements block"
-    },
-    "Abstract class extends implements": {
-        "prefix": "aclxi",
-        "body": [
-            "abstract class ${1:ClassName} extends ${2:MotherClass} implements ${3:Interfaces}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP abstract Class extends and implements block"
-    },
-    "Final class": {
-        "prefix": "fcl",
-        "body": [
-            "final class ${1:ClassName}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP final Class block"
-    },
-    "Final class extends": {
-        "prefix": "fclx",
-        "body": [
-            "final class ${1:ClassName} extends ${2:MotherClass}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP final Class extends block"
-    },
-    "Final class implements": {
-        "prefix": "fcli",
-        "body": [
-            "final class ${1:ClassName} implements ${2:Interfaces}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP final Class implements block"
-    },
-    "Final class extends implements": {
-        "prefix": "fclxi",
-        "body": [
-            "final class ${1:ClassName} extends ${2:MotherClass} implements ${3:Interfaces}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP final Class extends and implements block"
-    },
-    "Interface": {
-        "prefix": "in",
-        "body": [
-            "interface ${1:InterfaceName}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP Interface block"
-    },
-    "Interface extends": {
-        "prefix": "inx",
-        "body": [
-            "interface ${1:InterfaceName} extends ${2:Interfaces}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP Interface extends block"
-    },
-    "Trait": {
-        "prefix": "trt",
-        "body": [
-            "trait ${1:TraitName}",
-            "{",
-            "\t${0:# code...}",
-            "}"
-        ],
-        "description": "PHP Trait block"
-    }
+  "Class": {
+    "prefix": "cl",
+    "body": [
+      "class ${1:ClassName}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP Class block"
+  },
+  "Class extends": {
+    "prefix": "clx",
+    "body": [
+      "class ${1:ClassName} extends ${2:MotherClass}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP Class extends block"
+  },
+  "Class implements": {
+    "prefix": "cli",
+    "body": [
+      "class ${1:ClassName} implements ${2:Interfaces}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP Class implements block"
+  },
+  "Class extends implements": {
+    "prefix": "clxi",
+    "body": [
+      "class ${1:ClassName} extends ${2:MotherClass} implements ${3:Interfaces}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP Class extends and implements block"
+  },
+  "Abstract class": {
+    "prefix": "acl",
+    "body": [
+      "abstract class ${1:ClassName}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP abstract Class block"
+  },
+  "Abstract class extends": {
+    "prefix": "aclx",
+    "body": [
+      "abstract class ${1:ClassName} extends ${2:MotherClass}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP abstract Class extends block"
+  },
+  "Abstract class implements": {
+    "prefix": "acli",
+    "body": [
+      "abstract class ${1:ClassName} implements ${2:Interfaces}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP abstract Class implements block"
+  },
+  "Abstract class extends implements": {
+    "prefix": "aclxi",
+    "body": [
+      "abstract class ${1:ClassName} extends ${2:MotherClass} implements ${3:Interfaces}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP abstract Class extends and implements block"
+  },
+  "Final class": {
+    "prefix": "fcl",
+    "body": [
+      "final class ${1:ClassName}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP final Class block"
+  },
+  "Final class extends": {
+    "prefix": "fclx",
+    "body": [
+      "final class ${1:ClassName} extends ${2:MotherClass}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP final Class extends block"
+  },
+  "Final class implements": {
+    "prefix": "fcli",
+    "body": [
+      "final class ${1:ClassName} implements ${2:Interfaces}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP final Class implements block"
+  },
+  "Final class extends implements": {
+    "prefix": "fclxi",
+    "body": [
+      "final class ${1:ClassName} extends ${2:MotherClass} implements ${3:Interfaces}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP final Class extends and implements block"
+  },
+  "Interface": {
+    "prefix": "in",
+    "body": [
+      "interface ${1:InterfaceName}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP Interface block"
+  },
+  "Interface extends": {
+    "prefix": "inx",
+    "body": [
+      "interface ${1:InterfaceName} extends ${2:Interfaces}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP Interface extends block"
+  },
+  "Trait": {
+    "prefix": "trt",
+    "body": [
+      "trait ${1:TraitName}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "PHP Trait block"
+  },
+
+  "Class (strict + namespace header)": {
+    "prefix": "cln",
+    "body": [
+      "<?php",
+      "declare(strict_types=1);",
+      "",
+      "namespace ${1:App\\\\Domain};",
+      "",
+      "class ${2:ClassName}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Class file boilerplate with strict_types and namespace"
+  },
+  "Class with constructor property promotion (PHP 8.0+)": {
+    "prefix": "clcpp",
+    "body": [
+      "class ${1:ClassName}",
+      "{",
+      "\tpublic function __construct(",
+      "\t\tpublic ${2:string} $${3:id},",
+      "\t\tpublic ${4:string} $${5:name},",
+      "\t\tpublic ${6:?string} $${7:email} = null,",
+      "\t) {}",
+      "}"
+    ],
+    "description": "DTO-like class using constructor property promotion"
+  },
+  "Readonly class (PHP 8.2+)": {
+    "prefix": "clro",
+    "body": [
+      "readonly class ${1:ClassName}",
+      "{",
+      "\tpublic function __construct(",
+      "\t\tpublic ${2:int} $${3:x},",
+      "\t\tpublic ${4:int} $${5:y}",
+      "\t) {}",
+      "}"
+    ],
+    "description": "Immutable class with readonly (8.2+)"
+  },
+  "Value Object (final + readonly + promotion)": {
+    "prefix": "vo",
+    "body": [
+      "final readonly class ${1:ValueObject}",
+      "{",
+      "\tpublic function __construct(",
+      "\t\tpublic ${2:string} $${3:value}",
+      "\t) {}",
+      "",
+      "\tpublic function equals(self $other): bool {",
+      "\t\treturn $this->${3:value} === $other->${3:value};",
+      "\t}",
+      "}"
+    ],
+    "description": "Typical value object template (final, readonly, equality)"
+  },
+  "Static factory (private ctor + named constructors)": {
+    "prefix": "clfactory",
+    "body": [
+      "final class ${1:ClassName}",
+      "{",
+      "\tprivate function __construct(private ${2:string} $${3:value}) {}",
+      "",
+      "\tpublic static function fromString(string $${3:value}): self {",
+      "\t\treturn new self($${3:value});",
+      "\t}",
+      "",
+      "\tpublic static function fromInt(int $n): self {",
+      "\t\treturn new self((string)$n);",
+      "\t}",
+      "",
+      "\tpublic function value(): string {",
+      "\t\treturn $this->${3:value};",
+      "\t}",
+      "}"
+    ],
+    "description": "Static factory pattern with private constructor"
+  },
+  "Fluent Builder (static return type)": {
+    "prefix": "builder",
+    "body": [
+      "class ${1:Builder}",
+      "{",
+      "\tprivate array $parts = [];",
+      "",
+      "\tpublic function with(string $key, mixed $value): static {",
+      "\t\t$this->parts[$key] = $value;",
+      "\t\treturn $this;",
+      "\t}",
+      "",
+      "\tpublic function build(): array {",
+      "\t\treturn $this->parts;",
+      "\t}",
+      "}"
+    ],
+    "description": "Fluent builder using static return type (8.0+)"
+  },
+  "Interface with typed method stub": {
+    "prefix": "inm",
+    "body": [
+      "interface ${1:ServiceInterface}",
+      "{",
+      "\tpublic function ${2:handle}(array $${3:payload}): ${4:void};",
+      "}"
+    ],
+    "description": "Interface including a typed method signature"
+  },
+  "Trait with requirement (abstract method)": {
+    "prefix": "trtreq",
+    "body": [
+      "trait ${1:Loggable}",
+      "{",
+      "\tabstract protected function logger(): ${2:Psr\\\\Log\\\\LoggerInterface};",
+      "",
+      "\tprotected function info(string $message): void {",
+      "\t\t$this->logger()->info($message);",
+      "\t}",
+      "}"
+    ],
+    "description": "Trait that requires an abstract method (for DI)"
+  },
+  "Attribute class (PHP 8.0+)": {
+    "prefix": "attr",
+    "body": [
+      "use Attribute;",
+      "",
+      "#[Attribute(Attribute::TARGET_CLASS | Attribute::TARGET_METHOD)]",
+      "class ${1:Marker}",
+      "{",
+      "\tpublic function __construct(public ${2:int} $${3:level} = 1) {}",
+      "}"
+    ],
+    "description": "Define a PHP attribute class"
+  },
+  "Class with attribute usage": {
+    "prefix": "clattr",
+    "body": [
+      "#[${1:Marker}(${2:level: 2})]",
+      "class ${3:ClassName}",
+      "{",
+      "\t${0:// code...}",
+      "}"
+    ],
+    "description": "Apply attribute to a class"
+  },
+  "Enum (string backed, PHP 8.1+)": {
+    "prefix": "enum",
+    "body": [
+      "enum ${1:Status}: string {",
+      "\tcase ${2:Draft} = 'draft';",
+      "\tcase ${3:Published} = 'published';",
+      "\tcase ${4:Archived} = 'archived';",
+      "",
+      "\tpublic function isPublic(): bool {",
+      "\t\treturn $this === self::${3:Published};",
+      "\t}",
+      "}"
+    ],
+    "description": "String-backed enum with helper method (8.1+)"
+  },
+  "Enum (pure, PHP 8.1+)": {
+    "prefix": "enums",
+    "body": [
+      "enum ${1:Direction} {",
+      "\tcase ${2:North};",
+      "\tcase ${3:South};",
+      "\tcase ${4:East};",
+      "\tcase ${5:West};",
+      "}"
+    ],
+    "description": "Pure enum without backing type (8.1+)"
+  },
+  "Readonly property in non-readonly class (PHP 8.1+)": {
+    "prefix": "propreadonly",
+    "body": [
+      "class ${1:Config}",
+      "{",
+      "\tpublic readonly ${2:string} $${3:dsn};",
+      "",
+      "\tpublic function __construct(string $dsn) {",
+      "\t\t$this->${3:dsn} = $dsn;",
+      "\t}",
+      "}"
+    ],
+    "description": "Readonly property example (8.1+)"
+  },
+  "First-class callable usage (8.1+)": {
+    "prefix": "callablefc",
+    "body": [
+      "$${1:upper} = strtoupper(...);",
+      "$${2:result} = array_map($${1:upper}, $${3:items});"
+    ],
+    "description": "First-class callable syntax paired with array_map (8.1+)"
+  }
 }
