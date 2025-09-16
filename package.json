@@ -1,9 +1,9 @@
 {
-    "name": "php-awesome-snippets",
-    "displayName": "PHP Awesome Snippets",
+    "name": "php-8-awesome-snippets",
+    "displayName": "PHP 8 Awesome Snippets",
     "version": "0.0.1",
     "publisher": "jaywoo0830a",
-    "description": "A fullset of snippets for PHP devs to boost coding productivity.",
+    "description": "A fullset of snippets for PHP 8 devs to boost coding productivity.",
     "author": {
         "name": "JW Kim"
     },
